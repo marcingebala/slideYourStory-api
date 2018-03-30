@@ -1,0 +1,5 @@
+/files/done/*
+/files/tmp/*
+/files/rezise/*
+node_modules
+.DS_store

@@ -1,0 +1,48 @@
+{
+  "name": "ri-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "babel-node": "babel-node --presets=stage-2",
+    "start": "nodemon --exec npm run babel-node -- ./bin/www",
+    "build": "babel src -d dist"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bee-queue": "^1.2.2",
+    "bluebird": "^3.5.1",
+    "connect-multiparty": "^2.1.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "fs-extra": "^5.0.0",
+    "http-errors": "~1.6.2",
+    "im-resize": "^2.3.2",
+    "imagemin": "^5.3.1",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-pngquant": "^5.1.0",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.2.0",
+    "morgan": "~1.9.0",
+    "pg": "^7.4.1",
+    "redis": "^2.8.0",
+    "save": "^2.3.2",
+    "sequelize": "^4.37.4",
+    "sequelize-cli": "^4.0.0",
+    "sharp": "^0.20.1",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.17.2"
+  }
+}

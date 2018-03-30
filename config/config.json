@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "psql",
+    "database": "ri_api",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "psql",
+    "database": "ri_api",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "psql",
+    "database": "ri_api",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
