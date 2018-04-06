@@ -1,59 +1,51 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 var app = require('../app');
 var debug = require('debug')('ri-api:server');
 var http = require('http');
 
-/**
- * Get port from environment and store in Express.
- */
+import uuid from 'uuid/v4';
 
-var port = normalizePort(process.env.PORT || '3001');
+var port = process.env.PORT || '3000';
 app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-var models = require('../models');
 
-models.sequelize.sync().then(function() {
+/*
+var io = require('socket.io')(server);
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+*/
+
+const io = require('socket.io')(server, {
+  origins: ['http://localhost:9000','http://onet.pl:9000'],
+});
+
+app.set('socket.io', io);
+
+io.on('connection', function(socket){
+  const myUuid = uuid();
+
+  socket.emit('uuid', myUuid);
+  socket.on(myUuid, function(msg){
+    io.emit(myUuid, msg+' - server');
+   console.log('message: ' + msg, myUuid);
+ });
+
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
+
+
+});
+
+
+
   server.listen(port);
   server.on('error', onError);
   server.on('listening', onListening);
-});
-/**
- * Normalize a port into a number, string, or false.
- */
 
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
   if (error.syscall !== 'listen') {

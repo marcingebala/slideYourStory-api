@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Groups', {
+    return queryInterface.createTable('Domains', {
       uuid: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -12,8 +12,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      domain: {
-        type: Sequelize.STRING,
+      accepted: {
+        type: Sequelize.BOOLEAN,
         allowNull: true
       },
       createdAt: {
@@ -27,6 +27,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Groups');
+    return queryInterface.dropTable('Domains');
   }
 };

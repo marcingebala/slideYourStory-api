@@ -1,17 +1,23 @@
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var multipart = require('connect-multiparty');
 
+import mongoose from 'mongoose';
+mongoose.connect('mongodb://localhost/ir_api');
+
 var indexRouter = require('./routes/index.js');
-var groupsRouter = require('./routes/groups.js');
+var domainsRouter = require('./routes/domains.js');
 var usersRouter = require('./routes/users.js');
 var projectsRouter = require('./routes/projects');
 var filesRouter = require('./routes/files');
 
 var app = express();
+
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/groups', groupsRouter);
+app.use('/domains', domainsRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/files', filesRouter);

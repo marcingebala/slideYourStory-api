@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var models = require('../models');
+var models = {};
 
 router.get('/', (req, res, next) => {
   models.Project.findAll().then(projects => {
@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
     .then(project => {
       res.json(project);
     })
-    .error(err =>
+    .catch(err =>
       res.json(err)
     );
 });

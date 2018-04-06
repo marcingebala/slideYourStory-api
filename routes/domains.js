@@ -1,28 +1,28 @@
 var express = require('express');
 var router = express.Router();
 
-var models = require('../models');
+var models = {};
 
 router.get('/', function(req, res, next) {
-  models.Group.findAll().then(function(groups) {
-    res.json(groups);
+  models.Domain.findAll().then(function(domains) {
+    res.json(domains);
   });
 });
 
 router.get('/:uuid', function(req, res, next) {
-  models.Group.findById(req.params.uuid).then(function(group) {
+  models.Domain.findById(req.params.uuid).then(function(group) {
     res.json(group);
   });
 });
 
 router.post('/', function(req, res) {
-  models.Group.create({
-    domain: req.body.domain,
-    name: req.body.name
+  models.Domain.create({
+    accepted: req.body.accepted,
+    name: req.body.name.toLowerCase()
   }).then(function(group) {
     res.json({
       name: group.name,
-      domain: group.domain,
+      accepted: group.accepted,
       uuid: group.uuid
     });
   }).catch(function(err){
@@ -31,8 +31,8 @@ router.post('/', function(req, res) {
 });
 
 router.patch('/:uuid', function(req, res, next) {
-  models.Group.update(
-    { domain : req.body.domain, name: req.body.name },
+  models.Domain.update(
+    { accepte : req.body.accepte, name: req.body.name.toLowerCase() },
     { where: { uuid: req.params.uuid} }
   ).then(result =>
     res.json(result)
@@ -42,7 +42,7 @@ router.patch('/:uuid', function(req, res, next) {
 });
 
 router.delete('/:uuid', function(req, res, next) {
-  models.Group
+  models.Domain
   .destroy({ where: {uuid: req.params.uuid} })
   .then(result =>
     res.json(result)

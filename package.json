@@ -18,6 +18,7 @@
     "bluebird": "^3.5.1",
     "connect-multiparty": "^2.1.0",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "ffmpeg": "0.0.4",
@@ -30,6 +31,7 @@
     "imagemin-pngquant": "^5.1.0",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.12",
     "morgan": "~1.9.0",
     "pg": "^7.4.1",
     "redis": "^2.8.0",
@@ -37,6 +39,7 @@
     "sequelize": "^4.37.4",
     "sequelize-cli": "^4.0.0",
     "sharp": "^0.20.1",
+    "socket.io": "^2.1.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
